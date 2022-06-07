@@ -37,22 +37,26 @@ namespace ConsoleApp1
                            {
                                av_id = d.Field<int>("av_id"),
                                recipient = d.Field<string>("recipient"),
+                               recipient_printname = d.Field<string>("recipient_printname"),
                                sender = d.Field<string>("sender"),
                                contractor = d.Field<string>("contractor"),
                                agent_okpo = d.Field<string>("agent_okpo"),
                                doc_nom = d.Field<string>("doc_nom"),
                                work_porgram = d.Field<string>("work_porgram"),
-                               work_program_id = d.Field<short>("work_program_id")
+                               work_program_id = d.Field<short>("work_program_id"),
+                               pv_sklad_name = d.Field<string>("pv_sklad_name")
                            }).Select(ds => new DOCS
                            {
                                av_id = ds.Key.av_id,
                                recipient = ds.Key.recipient,
+                               recipient_printname = ds.Key.recipient_printname,
                                sender = ds.Key.sender,
                                contractor = ds.Key.contractor,
                                agent_okpo = ds.Key.agent_okpo,
                                doc_nom = ds.Key.doc_nom,
                                work_porgram = ds.Key.work_porgram,
                                work_program_id = ds.Key.work_program_id,
+                               pv_sklad_name = ds.Key.pv_sklad_name,
                                ds_list = ds.GroupBy(dss => new
                                {
                                    avs_id = dss.Field<long>("avs_id"),

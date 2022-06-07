@@ -19,7 +19,9 @@ Public Class Print
             dirInfo.Create()
         End If
 
-        Dim docFileName As String = $"Ковид {docItems.av_id} от {Date.Now:dd.MM.yyyy HH.mm.ss}.xlsx"
+        'Dim docFileName As String = $"Ковид {docItems.av_id} от {Date.Now:dd.MM.yyyy [HH.mm.ss.ffff]}.xlsx"
+        Dim docFileName As String = $"{docItems.doc_nom.Replace("/", " ")} от {Date.Now:dd.MM.yyyy [HH.mm.ss.ffff]}.xlsx"
+
         docFileNamePathExtension &= docFileName
 
         Using wb As New Workbook()
@@ -96,9 +98,21 @@ Public Class Print
                 Dim sgtinCount As Long = 0
 
                 ws.Range("A1").Value = docItems.sender
-                ws.Range("K5").Value = docItems.recipient
-                ws.Range("K11").Value = docItems.contractor
+                ws.Range("K5").Value = docItems.recipient_printname
+                ws.Range("K11").Value = docItems.sender
                 ws.Range("AG23").Value = docItems.doc_nom
+
+                Dim dt_str As String = Date.Now.ToString("dd.MM.yyyy")
+
+                ws.Range("AW23").Value = dt_str
+                ws.Range("BI23").Value = dt_str
+                ws.Range("X33").Value = $"Дата отгрузки: {dt_str}"
+
+                If docItems.pv_sklad_name.ToLower.Contains("регион") Then
+                    ws.Range("I23").Value = "Оплата МЗ РТ"
+                Else
+                    ws.Range("I23").Value = "Оплата МЗ РФ"
+                End If
 
                 For Each i As DOC_SPEC In docItems.ds_list
                     sgtinCount += i.ts_sgtin_cnt.Value
@@ -227,7 +241,7 @@ Public Class Print
                 ws.Range("NAME_LIST").Value = listName.Substring(index - 1)
                 ws.Range("COUNT_POS").Value = sumToString.sum_to_string(k, 0, False)
 
-                ws.Range("DATE1").Value = Date.Now.ToString("dd.MM.yyyy")
+                ws.Range("DATE1").Value = dt_str
             Catch ex As Exception
                 Throw New Exception(ex.Message)
             Finally
