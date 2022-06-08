@@ -10,6 +10,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DOC", "DOC\DOC.csproj", "{39A33ACA-7FFF-4A64-B6EE-C686767A6B7F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TtnTorg12DownloadAPI", "TtnTorg12DownloadAPI\TtnTorg12DownloadAPI.csproj", "{FC21E82E-48C7-45DD-982C-6DBF90FD3EEC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{39A33ACA-7FFF-4A64-B6EE-C686767A6B7F} = {39A33ACA-7FFF-4A64-B6EE-C686767A6B7F}
+		{344EFFEE-DB3E-4D03-B694-BC05BC16F984} = {344EFFEE-DB3E-4D03-B694-BC05BC16F984}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
