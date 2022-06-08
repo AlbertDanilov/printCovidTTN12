@@ -7,22 +7,29 @@ Public Class Print
     Private Shared mainPath As String = KnowFolders.GetKnowFolder(KnowFolder.Downloads)
     Private Shared docTemplateFileNamePath As String = $"{AppDomain.CurrentDomain.BaseDirectory}\Ковид.xlsx"
 
-    Public Shared Sub PrintExcel(docItems As DOCS)
+    Public Shared Sub PrintExcel(kodapt As Integer, av_id As Integer, docItems As DOCS)
         Dim docFile As Byte() = Nothing
         'Dim json As String = File.ReadAllText(jsonDocItems)
         'Dim pv As noPaperService_common.Entities.EcpSignData_pv = JsonConvert.DeserializeObject(Of noPaperService_common.Entities.EcpSignData_pv)(json)
 
-        Dim docFileNamePathExtension As String = $"{mainPath}\Отчеты\"
-        Dim dirInfo As New DirectoryInfo(docFileNamePathExtension)
+        'Dim docFileNamePathExtension As String = $"{mainPath}\Отчеты\"
+        Dim docFileNamePathExtension As String = $"D:\APT_TTN_TORG12\"
 
-        If Not dirInfo.Exists Then
-            dirInfo.Create()
-        End If
+        Directory.CreateDirectory(docFileNamePathExtension)
+        Directory.CreateDirectory(docFileNamePathExtension & $"{kodapt}\")
+        Directory.CreateDirectory(docFileNamePathExtension & $"{kodapt}\" & $"{av_id}\")
+
+        Dim di As DirectoryInfo = New DirectoryInfo(docFileNamePathExtension & $"{kodapt}\" & $"{av_id}\")
+
+        For Each file As FileInfo In di.GetFiles()
+            file.Delete()
+        Next
+
 
         'Dim docFileName As String = $"Ковид {docItems.av_id} от {Date.Now:dd.MM.yyyy [HH.mm.ss.ffff]}.xlsx"
         Dim docFileName As String = $"{docItems.doc_nom.Replace("/", " ")} от {Date.Now:dd.MM.yyyy [HH.mm.ss.ffff]}.xlsx"
 
-        docFileNamePathExtension &= docFileName
+        docFileNamePathExtension &= $"{kodapt}\" & $"{av_id}\" & docFileName
 
         Using wb As New Workbook()
             wb.LoadDocument(docTemplateFileNamePath)

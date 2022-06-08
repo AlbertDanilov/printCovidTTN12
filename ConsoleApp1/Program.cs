@@ -114,7 +114,7 @@ namespace ConsoleApp1
 
                 foreach (DOCS doc in docItems)
                 {
-                    Print.Print.PrintExcel(doc);
+                    Print.Print.PrintExcel(99999, 0, doc);
                     //if (doc.av_id.Value == 57497)
                     //{
                     //    Print.Print.PrintExcel(doc);
