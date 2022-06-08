@@ -13,7 +13,7 @@ Public Class Print
         'Dim pv As noPaperService_common.Entities.EcpSignData_pv = JsonConvert.DeserializeObject(Of noPaperService_common.Entities.EcpSignData_pv)(json)
 
         'Dim docFileNamePathExtension As String = $"{mainPath}\Отчеты\"
-        Dim docFileNamePathExtension As String = $"D:\APT_TTN_TORG12\"
+        Dim docFileNamePathExtension As String = $"C:\APT_TTN_TORG12\"
 
         Directory.CreateDirectory(docFileNamePathExtension)
         Directory.CreateDirectory(docFileNamePathExtension & $"{kodapt}\")

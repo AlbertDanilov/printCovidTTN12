@@ -126,7 +126,7 @@ namespace TtnTorg12DownloadAPI.Controllers
 
             if (docItems != null && docItems.Count > 0)
             {
-                string filesPath = "D:\\APT_TTN_TORG12\\" + $"{kodapt}\\" + $"{docItems[0].av_id}\\";
+                string filesPath = "C:\\APT_TTN_TORG12\\" + $"{kodapt}\\" + $"{docItems[0].av_id}\\";
 
                 DirectoryInfo di = new DirectoryInfo(filesPath);
 
