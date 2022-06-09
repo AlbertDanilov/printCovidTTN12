@@ -139,7 +139,7 @@ Public Class Print
                     s /= 100
 
                     Dim ndsCenaOpt = i.ts_ocena_nds - i.ts_ocena_nds / s
-                    Dim ndsSumOpt = i.ts_osum_nds - i.ts_ocena_nds / s
+                    Dim ndsSumOpt = i.pvs_psum_nds - i.pvs_psum_bnds / s
 
                     ndsCenaOpt = Decimal.Round(ndsCenaOpt, 2, MidpointRounding.AwayFromZero)
                     ndsSumOpt = Decimal.Round(ndsSumOpt, 2, MidpointRounding.AwayFromZero)
