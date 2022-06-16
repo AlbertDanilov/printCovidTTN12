@@ -119,6 +119,23 @@ namespace TtnTorg12DownloadAPI.Controllers
                        }).ToList();
 
 
+            string docFileNamePathExtension = "C:\\APT_TTN_TORG12\\";
+
+            foreach (DOCS doc in docItems)
+            {
+                Directory.CreateDirectory(docFileNamePathExtension);
+                Directory.CreateDirectory(docFileNamePathExtension + $"{kodapt}\\");
+                Directory.CreateDirectory(docFileNamePathExtension + $"{kodapt}\\" + $"{(int)doc.av_id}\\");
+
+                DirectoryInfo di = new DirectoryInfo(docFileNamePathExtension + $"{kodapt}\\" + $"{(int)doc.av_id}\\");
+
+                foreach (FileInfo item in di.GetFiles())
+                {
+                    item.Delete();
+                }
+            }
+
+
             foreach (DOCS doc in docItems)
             {
                 Print.Print.PrintExcel(kodapt, (int)doc.av_id, doc);

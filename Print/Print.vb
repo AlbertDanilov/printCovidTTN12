@@ -15,15 +15,15 @@ Public Class Print
         'Dim docFileNamePathExtension As String = $"{mainPath}\Отчеты\"
         Dim docFileNamePathExtension As String = $"C:\APT_TTN_TORG12\"
 
-        Directory.CreateDirectory(docFileNamePathExtension)
-        Directory.CreateDirectory(docFileNamePathExtension & $"{kodapt}\")
-        Directory.CreateDirectory(docFileNamePathExtension & $"{kodapt}\" & $"{av_id}\")
+        'Directory.CreateDirectory(docFileNamePathExtension)
+        'Directory.CreateDirectory(docFileNamePathExtension & $"{kodapt}\")
+        'Directory.CreateDirectory(docFileNamePathExtension & $"{kodapt}\" & $"{av_id}\")
 
-        Dim di As DirectoryInfo = New DirectoryInfo(docFileNamePathExtension & $"{kodapt}\" & $"{av_id}\")
+        'Dim di As DirectoryInfo = New DirectoryInfo(docFileNamePathExtension & $"{kodapt}\" & $"{av_id}\")
 
-        For Each file As FileInfo In di.GetFiles()
-            file.Delete()
-        Next
+        'For Each file As FileInfo In di.GetFiles()
+        '    file.Delete()
+        'Next
 
 
         'Dim docFileName As String = $"Ковид {docItems.av_id} от {Date.Now:dd.MM.yyyy [HH.mm.ss.ffff]}.xlsx"
@@ -117,8 +117,10 @@ Public Class Print
 
                 If docItems.pv_sklad_name.ToLower.Contains("регион") Then
                     ws.Range("I23").Value = "Оплата МЗ РТ"
-                Else
+                ElseIf docItems.pv_sklad_name.ToLower.Contains("федерал") Then
                     ws.Range("I23").Value = "Оплата МЗ РФ"
+                Else
+                    ws.Range("I23").Value = "Оплата МЗ"
                 End If
 
                 For Each i As DOC_SPEC In docItems.ds_list
